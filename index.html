@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    form{
+      background-color: orange;
+      text-align: center;
+    }      
+input[type=text] {
+width: 100%; 
+padding: 12px; 
+border: 1px solid #ccc; 
+border-radius: 4px; 
+box-sizing: border-box; 
+margin-top: 6px; 
+margin-bottom: 16px;
+text-align: center;
+}
+
+
+.button {
+background-color:orange; 
+border: none;
+color: white;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+}
+
+
+
+
+
+
+.container {
+border-radius: 5px;
+background-color: #f2f2f2;
+padding: 20px;
+
+}
+      </style>
+  
+</head>
+<body>
+
+    <div class="container" >
+        <form id="myForm">
+      
+          <label for="fname">First Name</label>
+          <input type="text"  name="name" id="myText" placeholder="Your name..">
+      
+          <label for="lname">Last Name</label>
+          <input type="text"  name="lname" id="myText1" placeholder="Your last name..">
+      
+          
+      
+          <input type="submit"  onclick="getInputValue()" class="button" onmouseover="MouseOver(this);" onmouseout="MouseOut(this);" value="submit">
+      
+        </form>
+      </div>
+    
+      <script>
+        function getInputValue() {
+          let name = document.getElementById("myText").value;
+          let lname = document.getElementById("myText1").value;
+          //console.log(name);
+          //console.log(lname)
+        }
+
+        function MouseOver(elem) {
+        elem.style.color = "red";
+        }
+
+          function MouseOut(elem) {
+              elem.style.color = "green";
+          }
+
+          const myForm=document.querySelector('#myForm');
+          const fName=document.querySelector('#myText');
+          const lName=document.querySelector('#myText1');
+          myForm.addEventListener('submit',onSubmit);
+          function onSubmit(e){
+            e.preventDefault();
+
+            if(fName.value==='' || lName.value===''){
+              alert('Please Enter The Fields');
+            }else{
+              console.log('success');
+            }
+            
+          }
+      </script>
+</body>
