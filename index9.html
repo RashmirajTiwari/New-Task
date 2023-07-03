@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    form{
+      background-color: #D7DBDD ;
+      text-align: center;
+    }      
+input[type=text] {
+width: 100%; 
+padding: 12px; 
+border: 1px solid #ccc; 
+border-radius: 4px; 
+box-sizing: border-box; 
+margin-top: 6px; 
+margin-bottom: 16px;
+text-align: center;
+}
+input[type=password] {
+width: 100%; 
+padding: 12px; 
+border: 1px solid #ccc; 
+border-radius: 4px; 
+box-sizing: border-box; 
+margin-top: 6px; 
+margin-bottom: 16px;
+text-align: center;
+}
+
+
+.button {
+background-color:orange; 
+border: none;
+color: white;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+}
+
+
+
+
+
+
+.container {
+width: 50%;
+border-radius: 5px;
+background-color: white;
+padding: 20px;
+
+}
+      </style>
+  
+</head>
+<body>
+
+    <div class="container" >
+        <form id="myForm">
+      
+          <label for="fname">Email</label>
+          <input type="text"  name="email1" id="email" placeholder="Enter Email">
+      
+          <label for="lname">Last Name</label>
+          <input type="password"  name="password1" id="password" placeholder="Enter Password">
+      
+          
+      
+          <input type="submit"  value="submit">
+      
+        </form>
+      </div>
+    
+      <script>
+        var form=document.getElementById('myForm');
+        form.addEventListener('submit',addData);
+        
+        function addData(e){
+            let key = 'Item 1';
+            
+            var email=document.getElementById('email').value;
+            var password=document.getElementById('password').value;
+            let myObj={
+                "email":email,
+                "password":password
+            }
+            e.preventDefault();
+            let serialized=JSON.stringify(myObj);
+            localStorage.setItem(email,serialized);
+        }
+        
+      </script>
+</body>
