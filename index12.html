@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <body> 
+        <div class="container" >
+            <form id="myForm">
+          
+            
+              <label for="emount">Enter Expense Amount</label>
+              <input type="text"  name="emout" id="eamount" >
+          
+              <label for="description">Choose Description</label>
+              <select id="description">
+                <option > </option>
+                <option >Pizza</option>
+                <option >petrol</option>
+                <option >movie</option>
+                <option >T-shirt</option>
+              </select>
+
+              <label for="Category">Choose Category</label>
+              <select id="category">
+                <option > </option>
+                <option >food</option>
+                <option >fuel</option>
+                <option >movie</option>
+                <option >clothes</option>
+              </select>
+                <input type="submit"  value="submit">
+          
+            </form>
+          </div>
+
+          <div class="container">
+            <ul id="items"></ul>
+          </div>
+
+          <script>
+            var form=document.getElementById('myForm');
+            var list=document.getElementById('items');
+            form.addEventListener('submit',addData);
+    
+            let id=0;
+            function addData(e){
+                id=id+1;
+                e.preventDefault();
+               var eamount=document.getElementById('eamount').value;
+                var descripion=document.getElementById('description').value;
+                var category=document.getElementById('category').value;
+                let myObj={
+                    "eamount":eamount,
+                    "descripion":descripion,
+                    "category":category
+                }
+               
+                
+                console.log(id);
+                let serialized=JSON.stringify(myObj);
+                localStorage.setItem("myObj"+id,serialized);
+    
+                list.innerHTML += ` <li class='listitems'><span style="display:none">${"myObj"+id}</span></span><span contenteditable = 'true'>${eamount}</span> <span>${descripion}</span> <span>${category}</span> <button class="edit-btn">Edit</button><button class='listitems_btn'>X</button></li> `
+        
+                eamount.value = ""
+                descripion.value = ""
+                category.value=""
+            }
+            
+        list.addEventListener("click",deleteItem);
+        function deleteItem(e) {
+        if (e.target.classList.contains("listitems_btn")) {
+        if (confirm("Are You Sure ? ")) {
+            const li = e.target.parentElement
+            // Also deleting form local storage
+            localStorage.removeItem(li.children[0].innerText)
+            list.removeChild(li)
+
+        }
+
+        list.addEventListener("click", editItem)
+        function editItem(e) {
+        if (e.target.classList.contains("edit-btn")) {
+    
+            const li = e.target.parentElement
+            eamount.value = li.children[1].innerText
+            description.value = li.children[2].innerText
+            category.value=li.children[3].innerText
+            localStorage.removeItem(li.children[0].innerText)
+            list.removeChild(li)
+            
+        }}
+    }
+}
+            </script>
+    </body>
+</html>
